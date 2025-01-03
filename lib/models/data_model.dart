@@ -1,5 +1,5 @@
-class HashTag {
+class HashTagModel {
   String title;
 
-  HashTag({required this.title});
+  HashTagModel({required this.title});
 }

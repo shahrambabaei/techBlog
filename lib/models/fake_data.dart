@@ -1,3 +1,5 @@
+import 'package:techblog/models/data_model.dart';
+
 import '../gen/assets.gen.dart';
 
 Map homepageBanner = {
@@ -7,3 +9,12 @@ Map homepageBanner = {
   "titleBanner": "آموزش برنامه نویسی فلاتر",
   "view": "250"
 };
+
+List<HashTagModel> tagList = [
+  HashTagModel(title: "جاوا"),
+  HashTagModel(title: "کاتلین"),
+  HashTagModel(title: "وب"),
+  HashTagModel(title: "هوش مصنوعی"),
+  HashTagModel(title: "دارت"),
+  HashTagModel(title: "لاراول"),
+];

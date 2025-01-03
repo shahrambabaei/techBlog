@@ -20,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
         body: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+          children: <Widget>[
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
               child: Row(
@@ -106,24 +106,46 @@ class _MainScreenState extends State<MainScreen> {
                 ],
               ),
             ),
+            const SizedBox(height: 12,),
             SizedBox(
               height: 50,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                itemCount: 5,
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                itemCount: tagList.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.only(left: 10),
-                    width: 150,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.centerRight,
-                            end: Alignment.centerLeft,
-                            colors: GradientColors.tags),
-                        color: Colors.lime,
-                        borderRadius: BorderRadius.circular(15)),
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      height: 50,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
+                              colors: GradientColors.tags),
+
+                          borderRadius: BorderRadius.circular(18)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          ImageIcon(
+                              AssetImage(
+                                Assets.icons.hashTagIcon.path,
+                              ),
+                              size: 14,
+                              color: Colors.white),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            tagList[index].title.toString(),
+                            style: textTheme.displayMedium,
+                          ),
+                        ],
+                      ),
+                    ),
                   );
                 },
               ),
