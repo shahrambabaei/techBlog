@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:techblog/constant/app_color.dart';
+import 'package:techblog/constant/my_string.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/models/fake_data.dart';
 
@@ -106,7 +107,9 @@ class _MainScreenState extends State<MainScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 12,),
+            const SizedBox(
+              height: 12,
+            ),
             SizedBox(
               height: 50,
               child: ListView.builder(
@@ -125,7 +128,6 @@ class _MainScreenState extends State<MainScreen> {
                               begin: Alignment.centerRight,
                               end: Alignment.centerLeft,
                               colors: GradientColors.tags),
-
                           borderRadius: BorderRadius.circular(18)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -149,6 +151,43 @@ class _MainScreenState extends State<MainScreen> {
                   );
                 },
               ),
+            ),
+            const SizedBox(
+              height: 32,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  ImageIcon(
+                    AssetImage(Assets.icons.bluePen.path),
+                    color: SolidColors.seeMore,
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    MyStrings.viewHotestBlog,
+                    style: textTheme.displaySmall,
+                  )
+                ],
+              ),
+            ),
+          const  SizedBox(height: 20,),
+            SizedBox(
+              height: size.height / 4.1,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  itemCount: 5,
+                  itemBuilder: (BuildContext, int) {
+                    return Container(
+                      width: 100,
+                      height: 100,
+                      color: Colors.lime,
+                    );
+                  }),
             )
           ],
         )),
