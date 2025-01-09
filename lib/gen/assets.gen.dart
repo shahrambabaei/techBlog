@@ -19,8 +19,22 @@ class $AssetsIconsGen {
   AssetGenImage get hashTagIcon =>
       const AssetGenImage('assets/icons/hashTagIcon.png');
 
+  /// File path: assets/icons/home.png
+  AssetGenImage get home => const AssetGenImage('assets/icons/home.png');
+
+  /// File path: assets/icons/microphon.png
+  AssetGenImage get microphon =>
+      const AssetGenImage('assets/icons/microphon.png');
+
+  /// File path: assets/icons/user.png
+  AssetGenImage get user => const AssetGenImage('assets/icons/user.png');
+
+  /// File path: assets/icons/write.png
+  AssetGenImage get write => const AssetGenImage('assets/icons/write.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [bluePen, hashTagIcon];
+  List<AssetGenImage> get values =>
+      [bluePen, hashTagIcon, home, microphon, user, write];
 }
 
 class $AssetsImagesGen {
