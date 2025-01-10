@@ -32,7 +32,7 @@ class _MainScreenState extends State<MainScreen> {
         ),
         body: Stack(
           children: [
-            ProfileScreen(size: size, textTheme: textTheme),
+            Positioned.fill(child: ProfileScreen(size: size, textTheme: textTheme)),
             BottomNavigation(size: size),
           ],
         ),
