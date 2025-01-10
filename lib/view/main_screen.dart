@@ -12,10 +12,23 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  int selectedScreen = 0;
+  late var size;
+  late var textTheme;
+  late List<Widget> techMAinScreenList;
+  @override
+  void didChangeDependencies() {
+    size = MediaQuery.of(context).size;
+    textTheme = Theme.of(context).textTheme;
+    techMAinScreenList = [
+      HomeScreen(size: size, textTheme: textTheme),
+      ProfileScreen(size: size, textTheme: textTheme)
+    ];
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    var textTheme = Theme.of(context).textTheme;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -32,8 +45,15 @@ class _MainScreenState extends State<MainScreen> {
         ),
         body: Stack(
           children: [
-            Positioned.fill(child: ProfileScreen(size: size, textTheme: textTheme)),
-            BottomNavigation(size: size),
+            Positioned.fill(child: techMAinScreenList[selectedScreen]),
+            BottomNavigation(
+              size: size,
+              changeScreen: (value) {
+                setState(() {
+                  selectedScreen = value;
+                });
+              },
+            ),
           ],
         ),
       ),
@@ -42,12 +62,11 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({
-    super.key,
-    required this.size,
-  });
+  const BottomNavigation(
+      {super.key, required this.size, required this.changeScreen});
 
   final Size size;
+  final Function(int) changeScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -65,23 +84,36 @@ class BottomNavigation extends StatelessWidget {
           child: Container(
             height: size.height * .08,
             decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                    colors: GradientColors.bottomNav),
+                gradient:
+                    const LinearGradient(colors: GradientColors.bottomNav),
                 borderRadius: BorderRadius.circular(24)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ImageIcon(
-                  AssetImage(Assets.icons.home.path),
-                  color: Colors.white,
+                IconButton(
+                  onPressed: () {
+                    changeScreen(0);
+                  },
+                  icon: ImageIcon(
+                    AssetImage(Assets.icons.home.path),
+                    color: Colors.white,
+                  ),
                 ),
-                ImageIcon(
-                  AssetImage(Assets.icons.write.path),
-                  color: Colors.white,
+                IconButton(
+                  onPressed: () {},
+                  icon: ImageIcon(
+                    AssetImage(Assets.icons.write.path),
+                    color: Colors.white,
+                  ),
                 ),
-                ImageIcon(
-                  AssetImage(Assets.icons.user.path),
-                  color: Colors.white,
+                IconButton(
+                  onPressed: () {
+                    changeScreen(1);
+                  },
+                  icon: ImageIcon(
+                    AssetImage(Assets.icons.user.path),
+                    color: Colors.white,
+                  ),
                 ),
               ],
             ),
