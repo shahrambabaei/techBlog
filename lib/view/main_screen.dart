@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:techblog/constant/app_color.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/home_screen.dart';
+import 'package:techblog/view/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -31,46 +32,60 @@ class _MainScreenState extends State<MainScreen> {
         ),
         body: Stack(
           children: [
-            HomeScreen(size: size, textTheme: textTheme),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: size.height * .1,
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: GradientColors.bottomNavBackground,
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter)),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-                  child: Container(
-                    height: size.height * .08,
-                    decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                            colors: GradientColors.bottomNav),
-                        borderRadius: BorderRadius.circular(24)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ImageIcon(
-                          AssetImage(Assets.icons.home.path),
-                          color: Colors.white,
-                        ),
-                        ImageIcon(
-                          AssetImage(Assets.icons.write.path),
-                          color: Colors.white,
-                        ),
-                        ImageIcon(
-                          AssetImage(Assets.icons.user.path),
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            ProfileScreen(size: size, textTheme: textTheme),
+            BottomNavigation(size: size),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class BottomNavigation extends StatelessWidget {
+  const BottomNavigation({
+    super.key,
+    required this.size,
+  });
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        height: size.height * .1,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: GradientColors.bottomNavBackground,
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter)),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+          child: Container(
+            height: size.height * .08,
+            decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                    colors: GradientColors.bottomNav),
+                borderRadius: BorderRadius.circular(24)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ImageIcon(
+                  AssetImage(Assets.icons.home.path),
+                  color: Colors.white,
+                ),
+                ImageIcon(
+                  AssetImage(Assets.icons.write.path),
+                  color: Colors.white,
+                ),
+                ImageIcon(
+                  AssetImage(Assets.icons.user.path),
+                  color: Colors.white,
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
