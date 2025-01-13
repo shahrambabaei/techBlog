@@ -3,6 +3,7 @@ import 'package:techblog/constant/app_color.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/home_screen.dart';
 import 'package:techblog/view/profile_screen.dart';
+import 'package:techblog/view/register_intro.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -20,10 +21,7 @@ class _MainScreenState extends State<MainScreen> {
   void didChangeDependencies() {
     size = MediaQuery.of(context).size;
     textTheme = Theme.of(context).textTheme;
-    techMAinScreenList = [
-      HomeScreen(size: size, textTheme: textTheme),
-      ProfileScreen(size: size, textTheme: textTheme)
-    ];
+
     super.didChangeDependencies();
   }
 
@@ -45,7 +43,15 @@ class _MainScreenState extends State<MainScreen> {
         ),
         body: Stack(
           children: [
-            Positioned.fill(child: techMAinScreenList[selectedScreen]),
+            Positioned.fill(
+                child: IndexedStack(
+              index: selectedScreen,
+              children: [
+                HomeScreen(size: size, textTheme: textTheme),
+                RegisterIntroScreen(),
+                ProfileScreen(size: size, textTheme: textTheme)
+              ],
+            )),
             BottomNavigation(
               size: size,
               changeScreen: (value) {
@@ -91,25 +97,21 @@ class BottomNavigation extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
-                  onPressed: () {
-                    changeScreen(0);
-                  },
+                  onPressed: () => changeScreen(0),
                   icon: ImageIcon(
                     AssetImage(Assets.icons.home.path),
                     color: Colors.white,
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () => changeScreen(1),
                   icon: ImageIcon(
                     AssetImage(Assets.icons.write.path),
                     color: Colors.white,
                   ),
                 ),
                 IconButton(
-                  onPressed: () {
-                    changeScreen(1);
-                  },
+                  onPressed: () => changeScreen(2),
                   icon: ImageIcon(
                     AssetImage(Assets.icons.user.path),
                     color: Colors.white,
