@@ -32,6 +32,27 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        inputDecorationTheme: InputDecorationTheme(
+            // hintStyle: Theme.of(context).textTheme.headlineSmall,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(width: 2))),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+                foregroundColor: const WidgetStatePropertyAll(Colors.white),
+                textStyle: WidgetStatePropertyAll(
+                  Theme.of(context).textTheme.titleMedium,
+                ),
+                elevation: const WidgetStatePropertyAll(0),
+                padding: const WidgetStatePropertyAll(
+                    EdgeInsets.symmetric(horizontal: 50, vertical: 15)),
+                shape: const WidgetStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                ),
+                backgroundColor:
+                    const WidgetStatePropertyAll(SolidColors.primaryColor))),
         brightness: Brightness.light,
         textTheme: const TextTheme(
           displayLarge: TextStyle(

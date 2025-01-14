@@ -10,6 +10,7 @@ class RegisterIntroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
+    var size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: Center(
@@ -31,18 +32,57 @@ class RegisterIntroScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 50),
                 child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: SolidColors.primaryColor,
-                      foregroundColor: Colors.white,
-                      elevation: 0, // Shadow depth
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 50, vertical: 15), // Padding
-                      shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(5), // Rounded corners
-                      ),
-                    ),
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet(
+                          isScrollControlled: true,
+                          context: context,
+                          builder: (context) {
+                            return Padding(
+                              padding: EdgeInsets.only(
+                                  bottom:
+                                      MediaQuery.of(context).viewInsets.bottom),
+                              child: Container(
+                                height: size.height / 2,
+                                width: size.width,
+                                decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(24),
+                                        topLeft: Radius.circular(24)),
+                                    color: Colors.white),
+                                child: Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: 100,
+                                    ),
+                                    Text(
+                                      MyStrings.insertYourEmail,
+                                      style: textTheme.headlineMedium!.copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 30, vertical: 20),
+                                      child: TextField(
+                                        textAlign: TextAlign.center,
+                                        decoration: InputDecoration(
+                                          hintText: "emxample@gmail.com",
+                                          hintStyle: textTheme.headlineSmall,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 50,
+                                    ),
+                                    ElevatedButton(
+                                        onPressed: () {},
+                                        child: const Text("ادامه"))
+                                  ],
+                                ),
+                              ),
+                            );
+                          });
+                    },
                     child: Text(
                       "بزن بریم",
                       style: textTheme.displayLarge,
