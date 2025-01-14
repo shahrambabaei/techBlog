@@ -3,7 +3,7 @@ import 'package:techblog/constant/app_color.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/home_screen.dart';
 import 'package:techblog/view/profile_screen.dart';
-import 'package:techblog/view/register_intro.dart';
+import 'package:techblog/view/register_intro_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -32,8 +32,8 @@ class _MainScreenState extends State<MainScreen> {
         appBar: AppBar(
           backgroundColor: SolidColors.scaffoldBg,
           elevation: 0,
-          leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
-          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
+          leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+          actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
           centerTitle: true,
           title: Image(
               image: AssetImage(
@@ -48,7 +48,7 @@ class _MainScreenState extends State<MainScreen> {
               index: selectedScreen,
               children: [
                 HomeScreen(size: size, textTheme: textTheme),
-                RegisterIntroScreen(),
+                const RegisterIntroScreen(),
                 ProfileScreen(size: size, textTheme: textTheme)
               ],
             )),
