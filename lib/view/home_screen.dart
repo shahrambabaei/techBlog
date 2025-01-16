@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:techblog/components/main_tags.dart';
 import 'package:techblog/constant/app_color.dart';
 import 'package:techblog/constant/my_string.dart';
 import 'package:techblog/gen/assets.gen.dart';
@@ -359,35 +360,7 @@ class HomeScreenTagList extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.only(left: 10),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              height: 50,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                      begin: Alignment.centerRight,
-                      end: Alignment.centerLeft,
-                      colors: GradientColors.tags),
-                  borderRadius: BorderRadius.circular(18)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ImageIcon(
-                      AssetImage(
-                        Assets.icons.hashTagIcon.path,
-                      ),
-                      size: 14,
-                      color: Colors.white),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    tagList[index].title.toString(),
-                    style: textTheme.displayMedium,
-                  ),
-                ],
-              ),
-            ),
+            child: MainTag(index: index, textTheme: textTheme),
           );
         },
       ),

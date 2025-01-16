@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:techblog/component.dart';
+import 'package:techblog/components/techdivider.dart';
+
 import 'package:techblog/constant/app_color.dart';
 import 'package:techblog/constant/my_string.dart';
 import 'package:techblog/gen/assets.gen.dart';

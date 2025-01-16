@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:techblog/constant/app_color.dart';
+import 'package:techblog/view/category_screen.dart';
+import 'package:techblog/view/register_intro_screen.dart';
 import 'package:techblog/view/splash_screen.dart';
 
 void main() {
@@ -91,7 +93,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home: const CategoryScreen(),
     );
   }
 }

@@ -9,7 +9,7 @@ class SolidColors {
   static const Color scaffoldBg = Color.fromARGB(255, 255, 255, 255);
   static const Color statusBarColor = Color.fromARGB(255, 255, 255, 255);
   static const Color systemNavigationBarColor =
-  Color.fromARGB(255, 255, 255, 255);
+      Color.fromARGB(255, 255, 255, 255);
   static const Color lightText = Color.fromARGB(255, 255, 255, 255);
   static const Color selectedPodCast = Color.fromARGB(255, 255, 139, 26);
   static const Color submitArticle = Color.fromARGB(255, 209, 209, 209);
@@ -26,8 +26,7 @@ class SolidColors {
   static const Color yelowColor = Color.fromARGB(255, 255, 235, 59);
   static const Color erorColor = Color.fromARGB(255, 227, 10, 10);
   static const Color lightBackColor = Color.fromARGB(255, 255, 255, 255);
-  static const Color minutesColorColor =  Color.fromARGB(255, 203, 202, 202);
-
+  static const Color minutesColorColor = Color.fromARGB(255, 203, 202, 202);
 }
 
 class GradientColors {
@@ -58,11 +57,8 @@ class GradientColors {
     Color.fromARGB(0, 0, 0, 0)
   ];
 
-
+  static const List<Color> favoriteCategory = [
+    Color.fromARGB(255, 0, 0, 0),
+    Color.fromARGB(255, 70, 70, 70),
+  ];
 }
-
-
-
-
-
-
