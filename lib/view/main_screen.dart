@@ -12,10 +12,12 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
+GlobalKey<ScaffoldState> _key = GlobalKey();
+
 class _MainScreenState extends State<MainScreen> {
   int selectedScreen = 0;
   late var size;
-  late var textTheme;
+  late TextTheme textTheme;
   late List<Widget> techMAinScreenList;
   @override
   void didChangeDependencies() {
@@ -29,11 +31,78 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: _key,
+        drawer: Drawer(
+          backgroundColor: SolidColors.scaffoldBg,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: ListView(
+              children: [
+                DrawerHeader(
+                  child: Center(
+                    child: Image.asset(
+                      Assets.images.logo.path,
+                      scale: 1.5,
+                    ),
+                  ),
+                ),
+                ListTile(
+                  title: Text(
+                    "پروفایل کاربری",
+                    style: textTheme.headlineMedium,
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: SolidColors.dividerColor,
+                ),
+                ListTile(
+                  title: Text(
+                    "درباره تک‌بلاگ",
+                    style: textTheme.headlineMedium,
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: SolidColors.dividerColor,
+                ),
+                ListTile(
+                  title: Text(
+                    "اشتراک گذاری تک بلاگ",
+                    style: textTheme.headlineMedium,
+                  ),
+                  onTap: () {},
+                ),
+                const Divider(
+                  color: SolidColors.dividerColor,
+                ),
+                ListTile(
+                  title: Text(
+                    "تک‌بلاگ در گیت هاب",
+                    style: textTheme.headlineMedium,
+                  ),
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ),
+        ),
         appBar: AppBar(
           backgroundColor: SolidColors.scaffoldBg,
           elevation: 0,
-          leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
-          actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+            onPressed: () {
+              _key.currentState!.openDrawer();
+            },
+            icon: const Icon(Icons.menu),
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.search),
+            ),
+          ],
           centerTitle: true,
           title: Image(
               image: AssetImage(
@@ -44,14 +113,15 @@ class _MainScreenState extends State<MainScreen> {
         body: Stack(
           children: [
             Positioned.fill(
-                child: IndexedStack(
-              index: selectedScreen,
-              children: [
-                HomeScreen(size: size, textTheme: textTheme),
-                const RegisterIntroScreen(),
-                ProfileScreen(size: size, textTheme: textTheme)
-              ],
-            )),
+              child: IndexedStack(
+                index: selectedScreen,
+                children: [
+                  HomeScreen(size: size, textTheme: textTheme),
+                  const RegisterIntroScreen(),
+                  ProfileScreen(size: size, textTheme: textTheme)
+                ],
+              ),
+            ),
             BottomNavigation(
               size: size,
               changeScreen: (value) {
