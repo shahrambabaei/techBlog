@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:validators/validators.dart';
-import 'package:techblog/constant/my_string.dart';
+import 'package:techblog/components/my_string.dart';
 import 'package:techblog/gen/assets.gen.dart';
 
 class RegisterIntroScreen extends StatelessWidget {

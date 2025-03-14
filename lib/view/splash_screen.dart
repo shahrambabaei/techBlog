@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:techblog/constant/app_color.dart';
+import 'package:techblog/components/app_color.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/main_screen.dart';
 

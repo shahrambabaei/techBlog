@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:techblog/constant/app_color.dart';
-import 'package:techblog/view/category_screen.dart';
+import 'package:techblog/components/app_color.dart';
 import 'package:techblog/view/main_screen.dart';
-import 'package:techblog/view/register_intro_screen.dart';
-import 'package:techblog/view/splash_screen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -39,7 +36,7 @@ class MyApp extends StatelessWidget {
             // hintStyle: Theme.of(context).textTheme.headlineSmall,
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(width: 2))),
+                borderSide: const BorderSide(width: 2))),
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
                 foregroundColor: const WidgetStatePropertyAll(Colors.white),

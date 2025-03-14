@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:techblog/components/main_tags.dart';
-import 'package:techblog/constant/app_color.dart';
-import 'package:techblog/constant/my_string.dart';
+import 'package:techblog/components/app_color.dart';
+import 'package:techblog/components/my_string.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/models/fake_data.dart';
 
@@ -127,7 +127,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                 selectesTags.removeAt(index);
                               });
                             },
-                            child: Icon(Icons.delete_forever_outlined,
+                            child: const Icon(Icons.delete_forever_outlined,
                                 size: 14, color: Colors.grey),
                           )
                         ],
