@@ -87,7 +87,7 @@ class RegisterIntroScreen extends StatelessWidget {
                         hintStyle: textTheme.headlineSmall,
                       ),
                       onChanged: (value) {
-                        log("$value   is Email: ${isEmail(value)}");
+                      
                       },
                     ),
                   ),
@@ -145,7 +145,7 @@ class RegisterIntroScreen extends StatelessWidget {
                         hintStyle: textTheme.headlineSmall,
                       ),
                       onChanged: (value) {
-                        log("$value   is Email: ${isEmail(value)}");
+                     
                       },
                     ),
                   ),

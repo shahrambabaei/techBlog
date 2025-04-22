@@ -1,34 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:techblog/components/app_color.dart';
+import 'package:techblog/components/my_string.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/home_screen.dart';
 import 'package:techblog/view/profile_screen.dart';
 import 'package:techblog/view/register_intro_screen.dart';
 
-class MainScreen extends StatefulWidget {
+GlobalKey<ScaffoldState> _key = GlobalKey();
+
+class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-GlobalKey<ScaffoldState> _key = GlobalKey();
-
-class _MainScreenState extends State<MainScreen> {
-  int selectedScreen = 0;
-  late var size;
-  late TextTheme textTheme;
-  late List<Widget> techMAinScreenList;
-  @override
-  void didChangeDependencies() {
-    size = MediaQuery.of(context).size;
-    textTheme = Theme.of(context).textTheme;
-
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var textTheme = Theme.of(context).textTheme;
+    RxInt selectedScreen = 0.obs;
     return SafeArea(
       child: Scaffold(
         key: _key,
@@ -71,7 +60,9 @@ class _MainScreenState extends State<MainScreen> {
                     "اشتراک گذاری تک بلاگ",
                     style: textTheme.headlineMedium,
                   ),
-                  onTap: () {},
+                  onTap: () async {
+                    await Share.share(MyStrings.shareText);
+                  },
                 ),
                 const Divider(
                   color: SolidColors.dividerColor,
@@ -113,21 +104,21 @@ class _MainScreenState extends State<MainScreen> {
         body: Stack(
           children: [
             Positioned.fill(
-              child: IndexedStack(
-                index: selectedScreen,
-                children: [
-                  HomeScreen(size: size, textTheme: textTheme),
-                  const RegisterIntroScreen(),
-                  ProfileScreen(size: size, textTheme: textTheme)
-                ],
-              ),
+              child: Obx(() {
+                return IndexedStack(
+                  index: selectedScreen.value,
+                  children: [
+                    HomeScreen(size: size, textTheme: textTheme),
+                    const RegisterIntroScreen(),
+                    ProfileScreen(size: size, textTheme: textTheme)
+                  ],
+                );
+              }),
             ),
             BottomNavigation(
               size: size,
-              changeScreen: (value) {
-                setState(() {
-                  selectedScreen = value;
-                });
+              changeScreen: (int value) {
+                selectedScreen.value = value;
               },
             ),
           ],
