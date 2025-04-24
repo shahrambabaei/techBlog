@@ -2,7 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:techblog/components/app_color.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/models/fake_data.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+
+//checkLaunchUrl
+Future<void> checkLaunchUrl(String url) async {
+  final Uri uri = Uri.parse(url);
+  if (!await launchUrl(uri)) {
+    throw Exception('Could not launch $url');
+  }
+}
+
+
+//MainTag
 class MainTag extends StatelessWidget {
   final int index;
   final TextTheme textTheme;
@@ -43,4 +55,24 @@ class MainTag extends StatelessWidget {
   }
 }
 
+//TechDivider
+
+class TechDivider extends StatelessWidget {
+  const TechDivider({
+    super.key,
+    required this.size,
+  });
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Divider(
+      color: SolidColors.dividerColor,
+      indent: size.width / 6,
+      endIndent: size.width / 6,
+      thickness: 1.5,
+    );
+  }
+}
 

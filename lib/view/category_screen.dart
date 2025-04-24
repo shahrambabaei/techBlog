@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:techblog/components/main_tags.dart';
 import 'package:techblog/components/app_color.dart';
+import 'package:techblog/components/my_component.dart';
 import 'package:techblog/components/my_string.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/models/fake_data.dart';

@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:techblog/components/app_color.dart';
+import 'package:techblog/components/my_component.dart';
 import 'package:techblog/components/my_string.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/view/home_screen.dart';
 import 'package:techblog/view/profile_screen.dart';
 import 'package:techblog/view/register_intro_screen.dart';
 
-GlobalKey<ScaffoldState> _key = GlobalKey();
 
+GlobalKey<ScaffoldState> _key = GlobalKey();
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
@@ -72,7 +73,7 @@ class MainScreen extends StatelessWidget {
                     "تک‌بلاگ در گیت هاب",
                     style: textTheme.headlineMedium,
                   ),
-                  onTap: () {},
+                  onTap: () => checkLaunchUrl(MyStrings.teckBlogGithubUrl),
                 ),
               ],
             ),
@@ -81,7 +82,7 @@ class MainScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: SolidColors.scaffoldBg,
           elevation: 0,
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: true,
           leading: IconButton(
             onPressed: () {
               _key.currentState!.openDrawer();

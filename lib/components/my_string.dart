@@ -15,7 +15,9 @@ class MyStrings {
   
 برای ارسال مطلب و پادکست باید حتما 
 ثبت نام کنی """;
-  static const String shareText="سلام دوست خوب من";
+  static const String shareText = "سلام دوست خوب من";
   static const String successfulRegister =
       "تبریک میگم٬ایمیلت با موفقیت وارد شد \nلطفا اطلاعات ثبت نام را وارد کن";
+  static const String teckBlogGithubUrl =
+      "https://github.com/shahrambabaei/techBlog";
 }
