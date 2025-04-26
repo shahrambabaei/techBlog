@@ -5,6 +5,7 @@ import 'package:techblog/components/app_color.dart';
 import 'package:techblog/components/my_component.dart';
 import 'package:techblog/components/my_string.dart';
 import 'package:techblog/gen/assets.gen.dart';
+import 'package:techblog/services/dio_service.dart';
 import 'package:techblog/view/home_screen.dart';
 import 'package:techblog/view/profile_screen.dart';
 import 'package:techblog/view/register_intro_screen.dart';
@@ -16,6 +17,7 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DioService().getData("https://techblog.sasansafari.com/Techblog/api/home/?command=index");
     var size = MediaQuery.of(context).size;
     var textTheme = Theme.of(context).textTheme;
     RxInt selectedScreen = 0.obs;
