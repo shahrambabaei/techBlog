@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
@@ -11,7 +10,6 @@ class DioService {
             responseType: ResponseType.json,
             method: "GET",
             headers: {"content-Type": "application/json"}));
-    log(response.toString());
     return response;
   }
 }
