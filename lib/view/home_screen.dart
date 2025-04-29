@@ -44,7 +44,8 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            HomeScreenPadcastList(size: size, textTheme: textTheme),
+            // HomeScreenPadcastList(size: size, textTheme: textTheme),
+            topPodcast(),
             SizedBox(
               height: size.height * .1,
             ),
@@ -131,6 +132,48 @@ class HomeScreen extends StatelessWidget {
                         width: size.width / 2.3,
                         child: Text(
                             homeScreenController.topVisitedList[index].title!,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: textTheme.headlineMedium!
+                                .copyWith(color: Colors.black)))
+                  ],
+                ),
+              );
+            });
+      }),
+    );
+  }
+
+  Widget topPodcast() {
+    return SizedBox(
+      height: size.height / 3.2,
+      child: Obx(() {
+        return ListView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            scrollDirection: Axis.horizontal,
+            itemCount: homeScreenController.topPodcastList.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(left: 15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: size.width / 2.3,
+                      height: size.height / 4.2,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(18),
+                        child: Image(
+                            fit: BoxFit.cover,
+                            width: size.width / 2.3,
+                            height: size.height / 4.4,
+                            image: NetworkImage(homeScreenController
+                                .topPodcastList[index].poster!)),
+                      ),
+                    ),
+                    SizedBox(
+                        width: size.width / 2.3,
+                        child: Text(blogList[index].title,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: textTheme.headlineMedium!
