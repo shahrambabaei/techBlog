@@ -44,6 +44,7 @@ dependencies:
   share_plus: ^10.1.4
   url_launcher: ^6.3.1
   dio: ^5.8.0+1
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
@@ -88,10 +89,11 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   # fonts:
-  #   - family: Schyler
+  #   - family: dana
   #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  #       - asset: assets/fonts/dana-Bold.ttf
+  #         weight: 700  
+  #       - asset: fonts/dana-Light.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

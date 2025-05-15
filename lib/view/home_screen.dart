@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:techblog/components/app_color.dart';
 import 'package:techblog/components/my_component.dart';
@@ -7,16 +9,15 @@ import 'package:techblog/controller/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/models/fake_data.dart';
 
-HomeScreenController homeScreenController = Get.put(HomeScreenController());
-
 class HomeScreen extends StatelessWidget {
   final Size size;
   final TextTheme textTheme;
-  const HomeScreen({
+  HomeScreen({
     super.key,
     required this.size,
     required this.textTheme,
   });
+  HomeScreenController homeScreenController = Get.put(HomeScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(
               height: 12,
             ),
-            HomeScreenTagList(textTheme: textTheme),
+            homeScreenTagList(),
             const SizedBox(
               height: 32,
             ),
@@ -55,6 +56,25 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget homeScreenTagList() {
+    return SizedBox(
+      height: 50,
+      child: Obx(() {
+        return ListView.builder(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          itemCount: homeScreenController.tagList.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: MainTag(index: index, textTheme: textTheme),
+            );
+          },
+        );
+      }),
+    );
+  }
+
   Widget topVisited() {
     return SizedBox(
       height: size.height / 3.2,
@@ -74,21 +94,47 @@ class HomeScreen extends StatelessWidget {
                       height: size.height / 4.2,
                       child: Stack(
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(24),
-                              image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(homeScreenController
-                                      .topVisitedList[index].image!)),
-                            ),
-                            foregroundDecoration: BoxDecoration(
+                          CachedNetworkImage(
+                            imageUrl: homeScreenController
+                                .topVisitedList[index].image!,
+                            imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(24),
-                                gradient: const LinearGradient(
-                                    begin: Alignment.bottomCenter,
-                                    end: Alignment.topCenter,
-                                    colors: GradientColors.blogPost)),
+                                image: DecorationImage(
+                                    fit: BoxFit.cover, image: imageProvider),
+                              ),
+                              foregroundDecoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(24),
+                                  gradient: const LinearGradient(
+                                      begin: Alignment.bottomCenter,
+                                      end: Alignment.topCenter,
+                                      colors: GradientColors.blogPost)),
+                            ),
+                            placeholder: (context, url) => const SpinKitCircle(
+                              color: SolidColors.primaryColor,
+                              size: 50,
+                            ),
+                            errorWidget: (context, url, error) => const Icon(
+                              Icons.image_not_supported_outlined,
+                              size: 50,
+                              color: Colors.grey,
+                            ),
                           ),
+                          // Container(
+                          //   decoration: BoxDecoration(
+                          //     borderRadius: BorderRadius.circular(24),
+                          //     image: DecorationImage(
+                          //         fit: BoxFit.cover,
+                          //         image: NetworkImage(homeScreenController
+                          //             .topVisitedList[index].image!)),
+                          //   ),
+                          //   foregroundDecoration: BoxDecoration(
+                          //       borderRadius: BorderRadius.circular(24),
+                          //       gradient: const LinearGradient(
+                          //           begin: Alignment.bottomCenter,
+                          //           end: Alignment.topCenter,
+                          //           colors: GradientColors.blogPost)),
+                          // ),
                           Positioned(
                               bottom: 20,
                               right: 10,
@@ -161,15 +207,37 @@ class HomeScreen extends StatelessWidget {
                     SizedBox(
                       width: size.width / 2.3,
                       height: size.height / 4.2,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(18),
-                        child: Image(
-                            fit: BoxFit.cover,
-                            width: size.width / 2.3,
-                            height: size.height / 4.4,
-                            image: NetworkImage(homeScreenController
-                                .topPodcastList[index].poster!)),
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            homeScreenController.topPodcastList[index].poster!,
+                        imageBuilder: (context, imageProvider) {
+                          return Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(18),
+                                image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover)),
+                          );
+                        },
+                        placeholder: (context, url) => const SpinKitCircle(
+                          color: SolidColors.primaryColor,
+                          size: 50,
+                        ),
+                        errorWidget: (context, url, error) => const Icon(
+                          Icons.image_not_supported_outlined,
+                          size: 50,
+                          color: Colors.grey,
+                        ),
                       ),
+
+                      //  ClipRRect(
+                      //   borderRadius: BorderRadius.circular(18),
+                      //   child: Image(
+                      //       fit: BoxFit.cover,
+                      //       width: size.width / 2.3,
+                      //       height: size.height / 4.4,
+                      //       image: NetworkImage(homeScreenController
+                      //           .topPodcastList[index].poster!)),
+                      // ),
                     ),
                     SizedBox(
                         width: size.width / 2.3,
@@ -322,16 +390,19 @@ class HomeScreenBanner extends StatelessWidget {
             width: size.width,
             height: size.height * .25,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage(homepageBanner["imageAsset"]))),
+              borderRadius: BorderRadius.circular(12),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage(homepageBanner["imageAsset"]),
+              ),
+            ),
             foregroundDecoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                gradient: const LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: GradientColors.homePosterCoverGradiant)),
+              borderRadius: BorderRadius.circular(12),
+              gradient: const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: GradientColors.homePosterCoverGradiant),
+            ),
           ),
           Positioned(
               bottom: 20,
@@ -388,25 +459,25 @@ class HomeScreenBanner extends StatelessWidget {
   }
 }
 
-class HomeScreenTagList extends StatelessWidget {
-  final TextTheme textTheme;
-  const HomeScreenTagList({super.key, required this.textTheme});
+// class HomeScreenTagList extends StatelessWidget {
+//   final TextTheme textTheme;
+//   const HomeScreenTagList({super.key, required this.textTheme});
 
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        itemCount: tagList.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: MainTag(index: index, textTheme: textTheme),
-          );
-        },
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return SizedBox(
+//       height: 50,
+//       child: ListView.builder(
+//         scrollDirection: Axis.horizontal,
+//         padding: const EdgeInsets.symmetric(horizontal: 15),
+//         itemCount: tagList.length,
+//         itemBuilder: (context, index) {
+//           return Padding(
+//             padding: const EdgeInsets.only(left: 10),
+//             child: MainTag(index: index, textTheme: textTheme),
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }

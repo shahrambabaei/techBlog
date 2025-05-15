@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:get/get.dart';
@@ -10,7 +9,7 @@ import 'package:techblog/models/tags_model.dart';
 import 'package:techblog/services/dio_service.dart';
 
 class HomeScreenController extends GetxController {
-  late RxList<PosterModel> poster;
+  late var poster;
   RxList<TagsModel> tagList = RxList();
   RxList<ArticleModel> topVisitedList = RxList();
   RxList<PodcastModel> topPodcastList = RxList();
@@ -24,13 +23,15 @@ class HomeScreenController extends GetxController {
     var response = await DioService().getData(ApiConstant.getHomeItems);
     log(response.data.toString());
     if (response.statusCode == 200) {
+      poster = response.data['poster'];
+
       for (var element in response.data['top_visited']) {
         topVisitedList.add(ArticleModel.fromJson(element));
       }
+
       for (var element in response.data['top_podcasts']) {
         topPodcastList.add(PodcastModel.fromJson(element));
       }
     }
- 
   }
 }

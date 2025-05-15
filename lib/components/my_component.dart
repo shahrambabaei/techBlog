@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:techblog/components/app_color.dart';
+import 'package:techblog/controller/home_screen_controller.dart';
 import 'package:techblog/gen/assets.gen.dart';
 import 'package:techblog/models/fake_data.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 
 //checkLaunchUrl
 Future<void> checkLaunchUrl(String url) async {
@@ -12,7 +13,6 @@ Future<void> checkLaunchUrl(String url) async {
     throw Exception('Could not launch $url');
   }
 }
-
 
 //MainTag
 class MainTag extends StatelessWidget {
@@ -45,13 +45,13 @@ class MainTag extends StatelessWidget {
             width: 10,
           ),
           Text(
-            tagList[index].title.toString(),
+            Get.find<HomeScreenController>().tagList[index].title!,
+            // tagList[index].title.toString(),
             style: textTheme.displayMedium,
           ),
         ],
       ),
     );
-    
   }
 }
 
@@ -75,4 +75,3 @@ class TechDivider extends StatelessWidget {
     );
   }
 }
-
