@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:techblog/components/app_color.dart';
 import 'package:techblog/controller/home_screen_controller.dart';
@@ -72,6 +73,22 @@ class TechDivider extends StatelessWidget {
       indent: size.width / 6,
       endIndent: size.width / 6,
       thickness: 1.5,
+    );
+  }
+}
+
+
+
+class Loading extends StatelessWidget {
+  const Loading({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SpinKitCircle(
+      color: SolidColors.primaryColor,
+      size: 50,
     );
   }
 }
