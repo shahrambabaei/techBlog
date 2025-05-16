@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(
                         height: 12,
                       ),
-                      homeScreenTagList(),
+                      tagList(),
                       const SizedBox(
                         height: 32,
                       ),
@@ -64,7 +64,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget homeScreenTagList() {
+  Widget tagList() {
     return SizedBox(
       height: 50,
       child: Obx(() {

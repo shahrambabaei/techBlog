@@ -47,7 +47,6 @@ class MainTag extends StatelessWidget {
           ),
           Text(
             Get.find<HomeScreenController>().tagList[index].title!,
-            // tagList[index].title.toString(),
             style: textTheme.displayMedium,
           ),
         ],
@@ -77,8 +76,6 @@ class TechDivider extends StatelessWidget {
   }
 }
 
-
-
 class Loading extends StatelessWidget {
   const Loading({
     super.key,
@@ -91,4 +88,37 @@ class Loading extends StatelessWidget {
       size: 50,
     );
   }
+}
+
+
+PreferredSize appBar(String title) {
+  return PreferredSize(
+    preferredSize: const Size.fromHeight(65),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        actions:  [
+          Center(
+            child: Text(title
+              ,
+              style: const TextStyle(
+                  fontSize: 18,
+                  color: SolidColors.primaryColor,
+                  fontWeight: FontWeight.bold),
+            ),
+          )
+        ],
+        leading: Container(
+          width: 35,
+          height: 35,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: SolidColors.primaryColor.withBlue(100)),
+          child: const Icon(Icons.arrow_back_ios_new_outlined,color: Colors.white,),
+        ),
+      ),
+    ),
+  );
 }
